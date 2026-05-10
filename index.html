@@ -56,17 +56,20 @@
         }
         .doodle {
             position: absolute;
-            color: rgba(255,255,255,0.04);
+            color: rgba(255,255,255,0.15);
             font-weight: 900;
             font-family: 'Courier New', monospace;
             animation: drift 25s linear infinite, flicker 3s ease-in-out infinite;
             white-space: nowrap;
+            font-size: 2rem;
+            text-shadow: 0 0 10px rgba(255,255,255,0.1);
         }
         .doodle-icon {
             position: absolute;
-            color: rgba(255,255,255,0.05);
+            color: rgba(255,255,255,0.2);
             animation: drift 20s linear infinite, flicker 4s ease-in-out infinite;
-            font-size: 2.5rem;
+            font-size: 3rem;
+            filter: drop-shadow(0 0 8px rgba(255,255,255,0.1));
         }
         @keyframes drift {
             0% { transform: translate(0,0) rotate(0deg); }
@@ -76,8 +79,8 @@
             100% { transform: translate(0,0) rotate(0deg); }
         }
         @keyframes flicker {
-            0%,100% { opacity:0.03; }
-            50% { opacity:0.07; }
+            0%,100% { opacity:0.7; }
+            50% { opacity:1; }
         }
         .cursor-glow {
             position: fixed;
@@ -284,7 +287,6 @@
     </div>
 
     <script>
-        // Частицы
         const particlesContainer = document.getElementById('particles');
         function createParticle() {
             const p = document.createElement('div');
@@ -301,17 +303,15 @@
         for (let i = 0; i < 40; i++) setTimeout(createParticle, Math.random() * 5000);
         setInterval(createParticle, 400);
 
-        // Фоновые дудлы
         const bgDoodles = document.getElementById('bgDoodles');
-        const texts = ['CS', 'DOTA', 'EZ', 'GG', 'WP', 'ACE', 'CLUTCH', 'RAMPAGE', 'HEADSHOT', 'NO SCOPE', '1 TAP', 'DEAGLE', 'AWP', 'RUSH B', 'MID OR FEED'];
-        const icons = ['fa-crosshairs', 'fa-bolt', 'fa-skull', 'fa-gamepad', 'fa-headphones', 'fa-fire', 'fa-bomb', 'fa-ghost', 'fa-crown', 'fa-shield-haltered', 'fa-sword', 'fa-hand-fist'];
+        const texts = ['CS', 'DOTA', 'EZ', 'GG', 'WP', 'ACE', 'CLUTCH', 'RAMPAGE', 'HEADSHOT', 'NO SCOPE', '1 TAP', 'DEAGLE', 'AWP', 'RUSH B', 'MID OR FEED', 'CYKA BLYAT', 'CHEEKI BREEKI', '360 NO SCOPE', 'WALLHACK', 'AIMBOT'];
+        const icons = ['fa-crosshairs', 'fa-bolt', 'fa-skull', 'fa-gamepad', 'fa-headphones', 'fa-fire', 'fa-bomb', 'fa-ghost', 'fa-crown', 'fa-shield-haltered', 'fa-sword', 'fa-hand-fist', 'fa-dragon', 'fa-hat-wizard', 'fa-meteor'];
         function createDoodle() {
             const el = document.createElement('div');
             el.style.left = (Math.random() * 90) + '%';
             el.style.top = (Math.random() * 85) + '%';
-            el.style.fontSize = (Math.random() * 2.5 + 1.5) + 'rem';
             el.style.animationDuration = (Math.random() * 25 + 20) + 's';
-            if (Math.random() > 0.6) {
+            if (Math.random() > 0.5) {
                 el.classList.add('doodle-icon');
                 el.innerHTML = '<i class="fas ' + icons[Math.floor(Math.random() * icons.length)] + '"></i>';
             } else {
@@ -321,9 +321,8 @@
             }
             bgDoodles.appendChild(el);
         }
-        for (let i = 0; i < 20; i++) createDoodle();
+        for (let i = 0; i < 25; i++) createDoodle();
 
-        // Кастомный курсор
         const cursorGlow = document.getElementById('cursorGlow');
         const cursorDot = document.getElementById('cursorDot');
         let mx = 0, my = 0, gx = 0, gy = 0;
