@@ -8,14 +8,14 @@
     <style>
         *{margin:0;padding:0;box-sizing:border-box}
         body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:#000;display:flex;justify-content:center;align-items:center;min-height:100vh;color:#fff;overflow:hidden;user-select:none}
-        body, .link-btn{cursor:default}
+        body,.link-btn{cursor:default}
         .particles,.bg-doodles{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}
         .particle{position:absolute;background:#fff;border-radius:50%;animation:floatUp linear infinite;opacity:0}
         @keyframes floatUp{0%{transform:translateY(100vh) scale(0);opacity:0}10%{opacity:1}90%{opacity:1}100%{transform:translateY(-10vh) scale(1.5);opacity:0}}
-        .doodle{position:absolute;font-weight:900;font-family:'Courier New',monospace;white-space:nowrap;animation:drift 25s linear infinite, flicker 3s ease-in-out infinite;color:rgba(255,255,255,.15);text-shadow:0 0 10px rgba(0,0,0,.8);font-size:clamp(1rem,3vw,2rem)}
-        .doodle-img{position:absolute;animation:drift 25s linear infinite, flicker 4s ease-in-out infinite;opacity:.25;filter:drop-shadow(0 0 15px rgba(0,0,0,.6));width:clamp(100px,20vw,200px);pointer-events:none}
-        @keyframes drift{0%{transform:translate(0,0) rotate(0deg)}25%{transform:translate(40px,-30px) rotate(3deg)}50%{transform:translate(-30px,-60px) rotate(-3deg)}75%{transform:translate(-45px,-20px) rotate(2deg)}100%{transform:translate(0,0) rotate(0deg)}}
-        @keyframes flicker{0%,100%{opacity:.6}50%{opacity:1}}
+        .doodle{position:absolute;font-weight:900;font-family:'Courier New',monospace;white-space:nowrap;animation:drift 30s linear infinite,flicker 4s ease-in-out infinite;color:rgba(255,255,255,.12);text-shadow:0 0 8px rgba(0,0,0,.7);font-size:clamp(0.9rem,2.5vw,1.6rem)}
+        .doodle-img{position:absolute;animation:drift 35s linear infinite,flicker 5s ease-in-out infinite;opacity:.3;filter:drop-shadow(0 0 12px rgba(0,0,0,.5));width:clamp(120px,25vw,220px);pointer-events:none;border-radius:12px}
+        @keyframes drift{0%{transform:translate(0,0) rotate(0deg)}25%{transform:translate(30px,-20px) rotate(2deg)}50%{transform:translate(-25px,-50px) rotate(-2deg)}75%{transform:translate(-35px,-15px) rotate(1deg)}100%{transform:translate(0,0) rotate(0deg)}}
+        @keyframes flicker{0%,100%{opacity:.5}50%{opacity:1}}
         .card{background:rgba(10,10,20,.8);backdrop-filter:blur(35px);border-radius:30px;padding:clamp(30px,8vw,50px) clamp(20px,8vw,40px);text-align:center;box-shadow:0 0 60px rgba(139,92,246,.15),0 0 120px rgba(59,130,246,.08),inset 0 1px 0 rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);position:relative;z-index:1;width:90%;max-width:400px}
         .glitch-wrapper{margin-bottom:15px}
         .glitch{font-size:clamp(2rem,8vw,3rem);font-weight:900;text-transform:uppercase;position:relative;display:inline-block;color:#fff;letter-spacing:5px}
@@ -45,23 +45,13 @@
     <div class="bg-doodles" id="bgDoodles"></div>
 
     <div class="card">
-        <div class="glitch-wrapper">
-            <div class="glitch" data-text="KOUNTIKK">KOUNTIKK</div>
-        </div>
+        <div class="glitch-wrapper"><div class="glitch" data-text="KOUNTIKK">KOUNTIKK</div></div>
         <div class="subtitle">● SOCIAL ●</div>
         <div class="links">
-            <a href="https://t.me/experementalz" target="_blank" class="link-btn telegram">
-                <i class="fab fa-telegram-plane"></i><span>Telegram</span>
-            </a>
-            <a href="https://tiktok.com/@kountikk0" target="_blank" class="link-btn tiktok">
-                <i class="fab fa-tiktok"></i><span>TikTok</span>
-            </a>
-            <a href="https://vk.com/spitixhvh" target="_blank" class="link-btn vk">
-                <i class="fab fa-vk"></i><span>VK</span>
-            </a>
-            <a href="https://soundcloud.com/kountzzzz" target="_blank" class="link-btn soundcloud">
-                <i class="fab fa-soundcloud"></i><span>SoundCloud</span>
-            </a>
+            <a href="https://t.me/experementalz" class="link-btn telegram"><i class="fab fa-telegram-plane"></i><span>Telegram</span></a>
+            <a href="https://tiktok.com/@kountikk0" class="link-btn tiktok"><i class="fab fa-tiktok"></i><span>TikTok</span></a>
+            <a href="https://vk.com/spitixhvh" class="link-btn vk"><i class="fab fa-vk"></i><span>VK</span></a>
+            <a href="https://soundcloud.com/kountzzzz" class="link-btn soundcloud"><i class="fab fa-soundcloud"></i><span>SoundCloud</span></a>
         </div>
         <div class="footer-text">✦ KOUNTIKK.SPACE ✦</div>
     </div>
@@ -69,14 +59,46 @@
     <script>
         const particlesContainer=document.getElementById('particles');
         function createParticle(){const p=document.createElement('div');p.classList.add('particle');const s=Math.random()*2+.5;p.style.width=s+'px';p.style.height=s+'px';p.style.left=(Math.random()*100)+'%';p.style.animationDuration=(Math.random()*12+10)+'s';p.style.animationDelay=(Math.random()*6)+'s';particlesContainer.appendChild(p);setTimeout(()=>p.remove(),(parseFloat(p.style.animationDuration)+parseFloat(p.style.animationDelay))*1000)}
-        for(let i=0;i<40;i++)setTimeout(createParticle,Math.random()*5000);setInterval(createParticle,400);
+        for(let i=0;i<30;i++)setTimeout(createParticle,Math.random()*4000);setInterval(createParticle,500);
 
         const bgDoodles=document.getElementById('bgDoodles');
-        const texts=['CS','DOTA','EZ','GG','WP','ACE','CLUTCH','RAMPAGE','HEADSHOT','DEAGLE','AWP','RUSH B','MID OR FEED','CHEEKI BREEKI','WALLHACK','AIMBOT','NO SCOPE','1 TAP'];
+        const texts=['CS','DOTA','EZ','GG','WP','ACE','CLUTCH','RAMPAGE','HEADSHOT','DEAGLE','AWP','RUSH B'];
         const imgUrls=['https://raw.githubusercontent.com/maksbdeh-bit/kountikk-site/main/yellow%20cs2%20%F0%9F%A5%B0.jpg','https://raw.githubusercontent.com/maksbdeh-bit/kountikk-site/main/%D0%91%D0%B5%D0%B7%20%D0%BD%D0%B0%D0%B7%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F%20(5).jpg','https://raw.githubusercontent.com/maksbdeh-bit/kountikk-site/main/%D0%91%D0%B5%D0%B7%20%D0%BD%D0%B0%D0%B7%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F%20(6).jpg'];
 
-        function createDoodleElement(){const rand=Math.random();if(rand<.5){const img=document.createElement('img');img.classList.add('doodle-img');img.src=imgUrls[Math.floor(Math.random()*imgUrls.length)];img.style.left=(Math.random()*85)+'%';img.style.top=(Math.random()*80)+'%';img.style.animationDuration=(Math.random()*30+20)+'s';img.style.transform='rotate('+(Math.random()*20-10)+'deg)';bgDoodles.appendChild(img)}else{const el=document.createElement('div');el.classList.add('doodle');el.textContent=texts[Math.floor(Math.random()*texts.length)];el.style.left=(Math.random()*85)+'%';el.style.top=(Math.random()*80)+'%';el.style.animationDuration=(Math.random()*30+20)+'s';el.style.transform='rotate('+(Math.random()*15-7)+'deg)';bgDoodles.appendChild(el)}}
-        for(let i=0;i<22;i++)createDoodleElement();
+        // 7 картинок в фиксированных позициях без пересечений
+        const imgPositions=[
+            {left:'5%',top:'10%',rot:'-8deg',size:'150px'},
+            {left:'70%',top:'15%',rot:'12deg',size:'180px'},
+            {left:'10%',top:'75%',rot:'6deg',size:'160px'},
+            {left:'75%',top:'70%',rot:'-10deg',size:'170px'},
+            {left:'40%',top:'5%',rot:'-4deg',size:'140px'},
+            {left:'5%',top:'45%',rot:'15deg',size:'155px'},
+            {left:'80%',top:'40%',rot:'-12deg',size:'165px'}
+        ];
+
+        imgPositions.forEach(pos=>{
+            const img=document.createElement('img');
+            img.classList.add('doodle-img');
+            img.src=imgUrls[Math.floor(Math.random()*imgUrls.length)];
+            img.style.left=pos.left;
+            img.style.top=pos.top;
+            img.style.width=pos.size;
+            img.style.transform='rotate('+pos.rot+')';
+            img.style.animationDuration=(Math.random()*20+30)+'s';
+            bgDoodles.appendChild(img);
+        });
+
+        // 12 текстовых надписей вручную разнесённых
+        for(let i=0;i<12;i++){
+            const el=document.createElement('div');
+            el.classList.add('doodle');
+            el.textContent=texts[i%texts.length];
+            el.style.left=(10+(i*7))+'%';
+            el.style.top=(8+(i*7.5))+'%';
+            el.style.animationDuration=(Math.random()*20+25)+'s';
+            el.style.transform='rotate('+(Math.random()*10-5)+'deg)';
+            bgDoodles.appendChild(el);
+        }
     </script>
 </body>
 </html>
