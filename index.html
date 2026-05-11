@@ -8,12 +8,11 @@
     <style>
         *{margin:0;padding:0;box-sizing:border-box}
         body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:#000;display:flex;justify-content:center;align-items:center;min-height:100vh;color:#fff;overflow:hidden;user-select:none}
-        body,.link-btn{cursor:default}
         .bg-doodles{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}
-        .doodle{position:absolute;font-weight:900;font-family:'Courier New',monospace;white-space:nowrap;animation:drift 30s linear infinite,flicker 4s ease-in-out infinite;color:rgba(255,255,255,.15);text-shadow:0 0 8px rgba(0,0,0,.7);font-size:clamp(0.7rem,2vw,1.2rem)}
-        .doodle-img{position:absolute;animation:drift 35s linear infinite,flicker 5s ease-in-out infinite;opacity:.3;filter:drop-shadow(0 0 6px rgba(0,0,0,.5));width:clamp(50px,10vw,80px);pointer-events:none;border-radius:6px}
-        @keyframes drift{0%{transform:translate(0,0) rotate(0deg)}25%{transform:translate(15px,-10px) rotate(2deg)}50%{transform:translate(-15px,-30px) rotate(-2deg)}75%{transform:translate(-20px,-8px) rotate(1deg)}100%{transform:translate(0,0) rotate(0deg)}}
-        @keyframes flicker{0%,100%{opacity:.4}50%{opacity:.8}}
+        .doodle{position:absolute;font-weight:900;font-family:'Courier New',monospace;white-space:nowrap;animation:drift 25s linear infinite,flicker 3s ease-in-out infinite;color:rgba(255,255,255,.12);text-shadow:0 0 8px rgba(0,0,0,.7);font-size:clamp(0.7rem,2vw,1.2rem)}
+        .doodle-icon{position:absolute;animation:drift 20s linear infinite,flicker 4s ease-in-out infinite;color:rgba(255,255,255,.15);font-size:clamp(1.5rem,5vw,3rem);filter:drop-shadow(0 0 6px rgba(255,255,255,.1))}
+        @keyframes drift{0%{transform:translate(0,0) rotate(0deg)}25%{transform:translate(25px,-20px) rotate(5deg)}50%{transform:translate(-20px,-45px) rotate(-5deg)}75%{transform:translate(-30px,-10px) rotate(3deg)}100%{transform:translate(0,0) rotate(0deg)}}
+        @keyframes flicker{0%,100%{opacity:.5}50%{opacity:1}}
         .card{background:rgba(10,10,20,.8);backdrop-filter:blur(35px);border-radius:30px;padding:clamp(30px,8vw,50px) clamp(20px,8vw,40px);text-align:center;box-shadow:0 0 60px rgba(139,92,246,.15),0 0 120px rgba(59,130,246,.08),inset 0 1px 0 rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);position:relative;z-index:1;width:90%;max-width:400px}
         .glitch-wrapper{margin-bottom:15px}
         .glitch{font-size:clamp(2rem,8vw,3rem);font-weight:900;text-transform:uppercase;position:relative;display:inline-block;color:#fff;letter-spacing:5px}
@@ -30,17 +29,15 @@
         .link-btn i{font-size:1.3rem;position:relative;z-index:1;transition:transform .3s ease}
         .link-btn:hover i{transform:scale(1.2)}
         .link-btn span{position:relative;z-index:1}
-        .telegram{border-color:rgba(0,136,204,.5);box-shadow:0 0 20px rgba(0,136,204,.15)}.telegram:hover{background:linear-gradient(135deg,#0088cc,#00a8e8);border-color:#0088cc;box-shadow:0 0 40px rgba(0,136,204,.6),0 10px 30px rgba(0,136,204,.4);transform:translateY(-3px) scale(1.02)}
-        .tiktok{border-color:rgba(255,255,255,.5);box-shadow:0 0 20px rgba(255,255,255,.15)}.tiktok:hover{background:linear-gradient(135deg,#111,#000);border-color:#fff;box-shadow:0 0 40px rgba(255,255,255,.5),0 10px 30px rgba(255,255,255,.3);transform:translateY(-3px) scale(1.02)}
-        .vk{border-color:rgba(0,119,255,.5);box-shadow:0 0 20px rgba(0,119,255,.15)}.vk:hover{background:linear-gradient(135deg,#0077FF,#2787F5);border-color:#0077FF;box-shadow:0 0 40px rgba(0,119,255,.6),0 10px 30px rgba(0,119,255,.4);transform:translateY(-3px) scale(1.02)}
-        .soundcloud{border-color:rgba(255,85,0,.5);box-shadow:0 0 20px rgba(255,85,0,.15)}.soundcloud:hover{background:linear-gradient(135deg,#f50,#f80);border-color:#f50;box-shadow:0 0 40px rgba(255,85,0,.6),0 10px 30px rgba(255,85,0,.4);transform:translateY(-3px) scale(1.02)}
+        .telegram{border-color:rgba(0,136,204,.5)}.telegram:hover{background:linear-gradient(135deg,#0088cc,#00a8e8);border-color:#0088cc;box-shadow:0 0 40px rgba(0,136,204,.6);transform:translateY(-3px)}
+        .tiktok{border-color:rgba(255,255,255,.5)}.tiktok:hover{background:linear-gradient(135deg,#111,#000);border-color:#fff;box-shadow:0 0 40px rgba(255,255,255,.5);transform:translateY(-3px)}
+        .vk{border-color:rgba(0,119,255,.5)}.vk:hover{background:linear-gradient(135deg,#0077FF,#2787F5);border-color:#0077FF;box-shadow:0 0 40px rgba(0,119,255,.6);transform:translateY(-3px)}
+        .soundcloud{border-color:rgba(255,85,0,.5)}.soundcloud:hover{background:linear-gradient(135deg,#f50,#f80);border-color:#f50;box-shadow:0 0 40px rgba(255,85,0,.6);transform:translateY(-3px)}
         .footer-text{margin-top:30px;color:rgba(255,255,255,.15);font-size:.7rem;letter-spacing:3px}
-        @media(max-width:480px){.link-btn{cursor:pointer}}
     </style>
 </head>
 <body>
     <div class="bg-doodles" id="bgDoodles"></div>
-
     <div class="card">
         <div class="glitch-wrapper"><div class="glitch" data-text="KOUNTIKK">KOUNTIKK</div></div>
         <div class="subtitle">● SOCIAL ●</div>
@@ -52,40 +49,27 @@
         </div>
         <div class="footer-text">✦ KOUNTIKK.SPACE ✦</div>
     </div>
-
     <script>
-        const bgDoodles=document.getElementById('bgDoodles');
-        const texts=['CS','DOTA','EZ','GG','WP','ACE','RUSH B','AWP','DEAGLE'];
-        
-        // Только 3 картинки, предзагружаем маленькие
-        const imgUrls=['https://raw.githubusercontent.com/maksbdeh-bit/kountikk-site/main/yellow%20cs2%20%F0%9F%A5%B0.jpg','https://raw.githubusercontent.com/maksbdeh-bit/kountikk-site/main/%D0%91%D0%B5%D0%B7%20%D0%BD%D0%B0%D0%B7%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F%20(5).jpg','https://raw.githubusercontent.com/maksbdeh-bit/kountikk-site/main/%D0%91%D0%B5%D0%B7%20%D0%BD%D0%B0%D0%B7%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F%20(6).jpg'];
-
-        const imgPositions=[
-            {left:'5%',top:'15%',rot:'-5deg'},
-            {left:'75%',top:'10%',rot:'8deg'},
-            {left:'40%',top:'85%',rot:'-7deg'}
-        ];
-
-        imgPositions.forEach((pos,i)=>{
-            const img=document.createElement('img');
-            img.classList.add('doodle-img');
-            img.src=imgUrls[i];
-            img.style.left=pos.left;
-            img.style.top=pos.top;
-            img.style.transform='rotate('+pos.rot+')';
-            img.style.animationDuration=(Math.random()*15+25)+'s';
-            bgDoodles.appendChild(img);
-        });
-
-        for(let i=0;i<9;i++){
+        const bg=document.getElementById('bgDoodles');
+        const texts=['CS','DOTA','EZ','GG','WP','ACE','RUSH B','AWP','DEAGLE','CLUTCH','HEADSHOT','NO SCOPE'];
+        const icons=['fa-skull','fa-crosshairs','fa-fire','fa-bomb','fa-crown','fa-ghost','fa-dragon','fa-hat-wizard','fa-hand-fist','fa-shield-haltered','fa-sword','fa-bolt'];
+        for(let i=0;i<12;i++){
             const el=document.createElement('div');
             el.classList.add('doodle');
             el.textContent=texts[i];
-            el.style.left=(5+(i*10))+'%';
-            el.style.top=(5+(i*9))+'%';
+            el.style.left=(4+i*7.5)+'%';
+            el.style.top=(3+i*7.8)+'%';
+            el.style.animationDuration=(Math.random()*20+20)+'s';
+            bg.appendChild(el);
+        }
+        for(let i=0;i<12;i++){
+            const el=document.createElement('div');
+            el.classList.add('doodle-icon');
+            el.innerHTML='<i class="fas '+icons[i]+'"></i>';
+            el.style.left=(8+i*7)+'%';
+            el.style.top=(6+i*7.5)+'%';
             el.style.animationDuration=(Math.random()*15+25)+'s';
-            el.style.transform='rotate('+(Math.random()*6-3)+'deg)';
-            bgDoodles.appendChild(el);
+            bg.appendChild(el);
         }
     </script>
 </body>
